@@ -18,4 +18,4 @@
 - Written in Bash and a bit of Applescript for dialogs
 
 <h2>Instructions</h2>
-- See our [GitHub project Wiki Page](https://github.com/thefanclub/dd-utility/wiki/dd-Utility) Page for installation and use instructions.
+- See our [GitHub project Wiki Page](https://github.com/thefanclub/dd-utility/wiki/) Page for installation and use instructions.
