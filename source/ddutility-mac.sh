@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# dd Utility version 1.0
+# dd Utility version 1.0 - Mac OSX 
 #
 # By The Fan Club 2015
 # http://www.thefanclub.co.za
