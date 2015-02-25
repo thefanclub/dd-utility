@@ -5,7 +5,7 @@ There are several tools available to copy and install IMG files to SD Memory Car
 
 I also wanted a program that could write compressed IMG files directly to the memory card without the need to decompress the image files first. dd the command line utility has been my default choice for years, but lacked a GUI that fit my requirements and so I decided to write my own - that is how dd Utility came to be.
 
-Features
+<h2>Features</h2>
 
 - Write IMG files to memory cards and hard drives.
 - Backup and Restore IMG files to memory cards and hard drives.
