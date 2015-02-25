@@ -11,7 +11,7 @@
 - Mac Retina displays supported.
 
 <h2>Requirements</h2>
-- Currently only Mac OSX is supported, Linux support to follow soon.
+- Currently only Mac OS X is supported, Linux support to follow soon.
 - OS X 10.6 or later
 
 <h2>Technical</h2>
