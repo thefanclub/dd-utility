@@ -22,4 +22,4 @@ I also wanted a program that could write compressed IMG files directly to the me
 - Written in Bash and a bit of Applescript for dialogs
 
 <h2>Instructions</h2>
-- See our GitHub project Wiki Page for installation and use instructions.
+- See our [GitHub project Wiki Page](https://github.com/thefanclub/dd-utility/wiki) Page for installation and use instructions.
