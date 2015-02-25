@@ -20,3 +20,6 @@ I also wanted a program that could write compressed IMG files directly to the me
 
 <h2>Technical</h2>
 - Written in Bash and a bit of Applescript for dialogs
+
+<h2>Instructions</h2>
+- See our project Wiki Page for installation and ues instructions.
