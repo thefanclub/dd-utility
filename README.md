@@ -10,7 +10,7 @@
 - Ideal for flashing IMG files to SD Cards for use with Raspberry Pi, Arduino,  BeagleBoard and other ARM boards.
 
 <h2>Requirements</h2>
-- Linux, Ubuntu and Mac OS X supported
+- Linux and Mac OS X supported
 
 <h2>Technical</h2>
 - Written in Bash and a bit of Applescript for dialogs for the OS X version
