@@ -1,4 +1,4 @@
-# dd-utility
+# dd Utility
 <strong>Write and Backup Operating System IMG files on SD Memory Card</strong>
 
 <h2>Features</h2>
