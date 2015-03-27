@@ -6,7 +6,7 @@
 - Write IMG files to memory cards and hard drives.
 - Backup and Restore IMG files to memory cards and hard drives.
 - Install and Restore compressed disk image files on the fly. Supported file formats: IMG, Zip, GZip and XZ.
-- Backup and compress disk image files on the fly in ZIP format to significantly reduce the file size of backups.
+- Backup and compress disk image files on the fly to significantly reduce the file size of backups.
 - Drag and Drop Backup and Restore. (OS X only)
 - Ideal for flashing IMG files to SD Cards for use with Raspberry Pi, Arduino,  BeagleBoard and other ARM boards.
 
