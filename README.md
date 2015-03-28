@@ -4,8 +4,8 @@
 <h2>Features</h2>
 
 - Write disk image files to memory cards and removable storage.
-- Create bootable Linux installations on USB drive from ISO on Mac OS X and Linux
-- Backup and Restore IMG files to memory cards and hard drives.
+- Create bootable Linux installations on USB drive from ISO files.
+- Backup and Restore IMG files to memory card and disk.
 - Install and Restore compressed disk image files on the fly. Supported file formats: IMG, ISO, Zip, GZip and XZ.
 - Backup and compress disk image files on the fly to significantly reduce the file size of backups.
 - Drag and Drop Backup and Restore. 
