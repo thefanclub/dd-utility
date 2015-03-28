@@ -1,13 +1,14 @@
 # dd Utility
-<strong>Write and Backup Operating System IMG files on SD Memory Card</strong>
+<strong>Write and Backup Operating System IMG or ISO files on Memory Card or Disk</strong>
 
 <h2>Features</h2>
 
-- Write IMG files to memory cards and hard drives.
+- Write disk image files to memory cards and removable storage.
+- Create bootable Linux installations on USB drive from ISO on Mac OS X and Linux
 - Backup and Restore IMG files to memory cards and hard drives.
-- Install and Restore compressed disk image files on the fly. Supported file formats: IMG, Zip, GZip and XZ.
+- Install and Restore compressed disk image files on the fly. Supported file formats: IMG, ISO, Zip, GZip and XZ.
 - Backup and compress disk image files on the fly to significantly reduce the file size of backups.
-- Drag and Drop Backup and Restore. (OS X only)
+- Drag and Drop Backup and Restore. 
 - Ideal for flashing IMG files to SD Cards for use with Raspberry Pi, Arduino,  BeagleBoard and other ARM boards.
 
 <h2>Requirements</h2>
