@@ -169,7 +169,8 @@ function getdevdisk () {
   for (( c=1; c<=$countdev; c++ ))
     do
       devitem=$( echo $devdisks | awk -v c=$c '{print $c}')
-      drivesizehuman=$( filesizehuman $( fdisk -l | grep "Disk\ $devitem\:" | cut -d "," -f2 | awk {'print $1'} | xargs ))
+      drivesize=$( fdisk -l | grep "Disk\ $devitem\:" | cut -d "," -f2 | awk {'print $1'} | xargs )
+      drivesizehuman=$( filesizehuman $drivesize ) 
       devicevendor=$(udisks --show-info $devitem | grep "vendor" | cut -d ":" -f2 | xargs)
       devicemodel=$(udisks --show-info $devitem | grep "model" | cut -d ":" -f2 | xargs)
       # echo output for zenity columns
@@ -212,7 +213,7 @@ if [ "$action" == "Backup" ] ; then
   fi
 
   # Get output filename and folder for backup image
-  imagepath=$(zenity --file-selection --filename=/home/$SUDO_USER/Desktop/ --save --confirm-overwrite --title="$apptitle - $action : Select the filename and folder for memory card image file" --file-filter="*.img *.gz" )
+  imagepath=$(zenity --file-selection --filename=/home/$SUDO_USER/Desktop/ --save --confirm-overwrite --title="$apptitle - $action : Select the filename and folder for memory card image file" --file-filter="*.img *.IMG *.gz *.GZ" )
  
   # Cancel if user selects Cancel
   if [ ! $? -eq 0 ] ; then
@@ -273,7 +274,7 @@ if [ "$action" == "Restore" ] ; then
   # Check if restore file was dropped as arg already
   if [ ! "$imagepath" ] ; then
     # Get image file location
-    imagepath=$(zenity --file-selection --filename=/home/$SUDO_USER/ --title="$apptitle - $action : Select image file to restore to memory card. Supported files : IMG, ISO, ZIP, GZ, XZ" --file-filter="*.img *.iso *.gz *.xz *.zip")
+    imagepath=$(zenity --file-selection --filename=/home/$SUDO_USER/ --title="$apptitle - $action : Select image file to restore to memory card. Supported files : IMG, ISO, ZIP, GZ, XZ" --file-filter="*.img *.IMG *.iso *.ISO *.gz *.GZ *.xz *.XZ *.zip *.ZIP")
  
     # Cancel if user selects Cancel
     if [ ! $? -eq 0 ] ; then
@@ -305,8 +306,8 @@ if [ "$action" == "Restore" ] ; then
 fi
 
 # Get Drive size in bytes and human readable
-drivesize=$( fdisk -l | grep "Disk\ $devdisk\:" | cut -d " " -f5 )
-drivesizehuman=$( filesizehuman $( fdisk -l | grep "Disk\ $devdisk\:" | cut -d "," -f2 | awk {'print $1'} | xargs ))
+drivesize=$( fdisk -l | grep "Disk\ $devdisk\:" | cut -d "," -f2 | awk {'print $1'} | xargs )
+drivesizehuman=$( filesizehuman $drivesize )
 
 # Set output option
 if [ "$action" == "Backup" ] ; then
