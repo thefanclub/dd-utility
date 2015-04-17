@@ -20,4 +20,4 @@
 - Debian/Ubuntu version packaged with [Debreate](http://debreate.sourceforge.net)
 
 <h2>Wiki</h2>
-- See our [GitHub project Wiki Page](https://github.com/thefanclub/dd-utility/wiki/) Page for installation and use instructions.
+- See our [GitHub project Wiki Page](https://github.com/thefanclub/dd-utility/wiki/) for installation and use instructions.
