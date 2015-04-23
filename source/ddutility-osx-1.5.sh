@@ -347,7 +347,6 @@ fi
 ### Parse data 
 # Use rdisk for faster copy
 disknum=$( echo "$devdisk" | awk -F 'disk' '{print $2}' )
-echo "devdisk = $devdisk"
 devdiskr="/dev/rdisk$disknum"
 
 # Get Drive size in bytes and human readable
