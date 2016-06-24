@@ -131,32 +131,13 @@ function progressmonitor () {
 function getdevdisk () {
   # Check for mounted devices in user media folder
   # Parse memcard disk volume Goodies
-  memcard=$( diskutil list | grep "\/dev\/" | grep "external" | awk {'print $1'} )
+  memcard=$( diskutil list | grep "\/dev\/" | awk {'print $1'} )
   # Get dev names of drive - remove partition numbers
   checkdev=$( echo $memcard | sed 's/s[0-9]//g' )
   # Remove duplicate dev names
   devdisks=$( echo $checkdev | xargs -n1 | sort -u | xargs )
   # How many devs found
   countdev=$( echo $devdisks | wc -w )
-  # Retry detection if no memcards found
-  while [ $countdev -eq 0 ] ; do
-    # Ask for redetect
-    response=$( osascript -e 'tell app "System Events" to display dialog "No Volumes Detected \n\nInsert a memory card or removable storage \nand click Retry.\n\nSelect Cancel to Quit" buttons {"Cancel", "Retry"} default button 2 with title "'"$apptitle"' - '"$action"'" with icon POSIX file "'"$iconfile"'"  ')
-    
-    answer=$(echo $response | cut -d ':' -f2)
-    if [ "$answer" != "Retry" ] ; then
-      exit 1
-    fi
-    # Do Re-Detection of Devices
-    # Parse memcard disk volume Goodies
-    memcard=$( diskutil list | grep "\/dev\/" | grep "external" | awk {'print $1'} )
-    # Get dev names of drive - remove partition numbers
-    checkdev=$( echo $memcard | sed 's/s[0-9]//g' )
-    # Remove duplicate dev names
-    devdisks=$( echo $checkdev | xargs -n1 | sort -u | xargs )
-    # How many devs found
-    countdev=$( echo $devdisks | wc -w )
-  done
 
   # Generate select Dialog 
   devitems=""
@@ -165,24 +146,43 @@ function getdevdisk () {
     do
       devitem=$( echo $devdisks | awk -v c=$c '{print $c}')
       drivesizehuman=$( diskutil info $devitem | grep "Total\ Size" | awk {'print $3" "$4'} )
-      devtype=$(diskutil info "$devitem" | grep "Device\ \/\ Media" | cut -d ":" -f2 | xargs)
+      devtype=$( diskutil info "$devitem" | grep "Device\ \/\ Media" | cut -d ":" -f2 | xargs)
       disknum=$( diskutil list | grep "$devitem" | awk -F 'disk' '{print $2}' | awk '{print $1}' | cut -d 's' -f1 )
-      # Create List of "item","item","item" for select dialog
-      devitems=$devitems"\"\t$drivesizehuman \t\t$devtype\t\tDisk $disknum\""
-      # Add comma if not last item
-      if [ $c -ne $countdev ] ; then
-        devitems=$devitems","
+      devinternal=$( diskutil info "$devitem" | grep "Internal" | cut -d ":" -f2 | xargs)
+      devlocation=$( diskutil info "$devitem" | grep "Device\ Location" | cut -d ":" -f2 | xargs)
+      # Only add external devices - check for info from old version of Diskutil
+      if [ "$devinternal" != "Yes" ] && [ "$devlocation" != "Internal" ] ; then
+        # Create List of "item","item","item" for select dialog
+        devitems=$devitems"\"\t$drivesizehuman\t\t$devtype\t\tDisk $disknum\""
+        # Add comma if not last item
+        if [ $c -ne $countdev ] ; then
+          devitems=$devitems","
+        fi
       fi
   done
 
-  # Select Dialog
-  devselect="$( osascript -e 'tell application "System Events" to activate' -e 'tell application "System Events" to return (choose from list {'"$devitems"'} with prompt "Select your memory card" with title "'"$apptitle"' - '"$action"'" OK button name "Continue" cancel button name "Cancel")')"
-  
-  # get dev value back from devselect
-  devdisk=$( echo $devselect | grep 'Disk' | rev | cut -d' ' -f1 | xargs | awk '{print "/dev/disk"$1}' )
+  # If list of external storage devices detected
+  if [ "$devitems" ] ; then
+    # Select Dialog
+    devselect="$( osascript -e 'tell application "System Events" to activate' -e 'tell application "System Events" to return (choose from list {'"$devitems"'} with prompt "Select your memory card" with title "'"$apptitle"' - '"$action"'" OK button name "Continue" cancel button name "Cancel")')"
+    # get dev value back from devselect
+    devdisk=$( echo $devselect | grep 'Disk' | rev | cut -d' ' -f1 | xargs | awk '{print "/dev/disk"$1}' )
+    # Return value or false
+    echo $devdisk
+  # No external devices found
+  else
+    # Ask for redetect
+    response=$( osascript -e 'tell app "System Events" to display dialog "No Volumes Detected \n\nInsert a memory card or removable storage \nand click Retry.\n\nSelect Cancel to Quit" buttons {"Cancel", "Retry"} default button 2 with title "'"$apptitle"' - '"$action"'" with icon POSIX file "'"$iconfile"'"  ')
+    
+    answer=$(echo $response | cut -d ':' -f2)
+    # Retry detection if no memcards found
+    if [ "$answer" == "Retry" ] ; then
+      getdevdisk
+    else
+      exit 1
+    fi
+  fi
 
-  # Return value or false
-  echo $devdisk
 }
 
 
