@@ -145,9 +145,9 @@ function getdevdisk () {
   for (( c=1; c<=$countdev; c++ ))
     do
       devitem=$( echo $devdisks | awk -v c=$c '{print $c}')
+      disknum=$( echo $devitem | grep "$devitem" | awk -F 'disk' '{print $2}' | awk '{print $1}' | cut -d 's' -f1 )
       drivesizehuman=$( diskutil info $devitem | grep "Total\ Size" | awk {'print $3" "$4'} )
       devtype=$( diskutil info "$devitem" | grep "Device\ \/\ Media" | cut -d ":" -f2 | xargs)
-      disknum=$( diskutil list | grep "$devitem" | awk -F 'disk' '{print $2}' | awk '{print $1}' | cut -d 's' -f1 )
       devinternal=$( diskutil info "$devitem" | grep "Internal" | cut -d ":" -f2 | xargs)
       devlocation=$( diskutil info "$devitem" | grep "Device\ Location" | cut -d ":" -f2 | xargs)
       # Only add external devices - check for info from old version of Diskutil
