@@ -150,8 +150,9 @@ function getdevdisk () {
       devtype=$( diskutil info "$devitem" | grep "Device\ \/\ Media" | cut -d ":" -f2 | xargs)
       devinternal=$( diskutil info "$devitem" | grep "Internal" | cut -d ":" -f2 | xargs)
       devlocation=$( diskutil info "$devitem" | grep "Device\ Location" | cut -d ":" -f2 | xargs)
-      # Only add external devices - check for info from old version of Diskutil
-      if [ "$devinternal" != "Yes" ] && [ "$devlocation" != "Internal" ] ; then
+      devprotocol=$( diskutil info "$devitem" | grep "Protocol" | cut -d ":" -f2 | xargs)
+      # Only add external devices - check for info from old version of Diskutil and exclude disk images
+      if [ "$devinternal" != "Yes" ] && [ "$devlocation" != "Internal" ] && [ "$devprotocol" != "Disk Image" ] ; then
         # Create List of "item","item","item" for select dialog
         devitems=$devitems"\"\t$drivesizehuman\t\t$devtype\t\tDisk $disknum\""
         # Add comma if not last item
