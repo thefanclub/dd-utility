@@ -1,7 +1,7 @@
 # dd Utility
 <strong>Write and Backup Operating System IMG or ISO files on Memory Card or Disk</strong>
 
-<h2>Features</h2>
+## Features 
 
 - Write disk image files to memory cards and removable storage.
 - Create bootable USB stick from ISO files of Linux installations.
@@ -11,13 +11,13 @@
 - Drag and Drop Backup and Restore. 
 - Ideal for flashing IMG files to SD Cards for use with Raspberry Pi, Arduino,  BeagleBoard and other ARM boards.
 
-<h2>Requirements</h2>
+## Requirements
 - Linux and Mac OS X supported
 
-<h2>Technical</h2>
+## Technical
 - Written in Bash and a bit of Applescript for dialogs for the OS X version
 - OS X version packaged with [Platypus](http://sveinbjorn.org/platypus)
 - Debian/Ubuntu version packaged with [Debreate](http://debreate.sourceforge.net)
 
-<h2>Wiki</h2>
-- See our [GitHub project Wiki Page](https://github.com/thefanclub/dd-utility/wiki/) for installation and use instructions.
+## Wiki
+- See our [GitHub project Wiki Page](https://github.com/thefanclub/dd-utility/wiki) for installation and use instructions.
