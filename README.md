@@ -12,11 +12,11 @@
 - Ideal for flashing IMG files to SD Cards for use with Raspberry Pi, Arduino,  BeagleBoard and other ARM boards.
 
 <h2>Requirements</h2>
-- Linux and Mac OS X supported
+- Linux and macOS supported
 
 <h2>Technical</h2>
-- Written in Bash and a bit of Applescript for dialogs for the OS X version
-- OS X version packaged with [Platypus](http://sveinbjorn.org/platypus)
+- Written in Bash and a bit of Applescript for dialogs for the macOS version
+- macOS version packaged with [Platypus](http://sveinbjorn.org/platypus)
 - Debian/Ubuntu version packaged with [Debreate](http://debreate.sourceforge.net)
 
 <h2>Wiki</h2>
